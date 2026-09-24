@@ -1,11 +1,12 @@
 import adwaita_lustre_dev/minify
+import gleam/float
+import gleam/int
 import gleam/list
+import gleam/result
 import gleam/string
 import simplifile
 
 const suffix = "-symbolic.svg"
-
-const kept_attributes = ["width", "height", "viewBox"]
 
 pub type Icon {
   Icon(
@@ -45,8 +46,40 @@ fn read_icon(icons_dir: String, path: String) -> Icon {
 fn split_svg(content: String) -> #(List(#(String, String)), String) {
   let #(root_attributes, inner_html) = minify.svg(content)
   let attributes =
-    list.filter(root_attributes, fn(attribute) {
-      list.contains(kept_attributes, attribute.0)
-    })
+    root_attributes
+    |> with_view_box
+    |> list.filter(fn(attribute) { attribute.0 == "viewBox" })
   #([#("fill", "currentColor"), ..attributes], inner_html)
+}
+
+fn with_view_box(
+  attributes: List(#(String, String)),
+) -> List(#(String, String)) {
+  case
+    list.key_find(attributes, "viewBox"),
+    list.key_find(attributes, "width"),
+    list.key_find(attributes, "height")
+  {
+    Error(Nil), Ok(width), Ok(height) ->
+      case is_number(width) && is_number(height) {
+        True ->
+          list.append(attributes, [
+            #(
+              "viewBox",
+              "0 0 " <> remove_unit(width) <> " " <> remove_unit(height),
+            ),
+          ])
+        False -> attributes
+      }
+    _, _, _ -> attributes
+  }
+}
+
+fn remove_unit(value: String) -> String {
+  string.replace(value, "px", "")
+}
+
+fn is_number(value: String) -> Bool {
+  let value = remove_unit(value)
+  result.is_ok(int.parse(value)) || result.is_ok(float.parse(value))
 }
