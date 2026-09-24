@@ -1,0 +1,20 @@
+name = "adwaita_lustre"
+version = "1.0.0"
+
+description = "Adwaita symbolic icons as Lustre elements"
+licences = ["LGPL-3.0-only", "CC-BY-SA-3.0"]
+repository = { type = "github", user = "gungun974", repo = "adwaita_lustre" }
+
+[dependencies]
+gleam_stdlib = ">= 1.0.0 and < 2.0.0"
+lustre = ">= 5.7.1 and < 6.0.0"
+
+[dev_dependencies]
+gleeunit = ">= 1.0.0 and < 2.0.0"
+gleam_httpc = ">= 5.0.0 and < 6.0.0"
+gleam_http = ">= 4.4.0 and < 5.0.0"
+gleam_crypto = ">= 1.6.0 and < 2.0.0"
+star = ">= 1.0.0 and < 2.0.0"
+simplifile = ">= 2.7.0 and < 3.0.0"
+pocket_watch = ">= 2.1.0 and < 3.0.0"
+xmlm = ">= 1.0.1 and < 2.0.0"
