@@ -9,15 +9,15 @@ pub fn main() {
   let source_path =
     download.download(
       id: "adwaita-icon-theme",
-      version: "51.0",
-      url: "https://gitlab.gnome.org/GNOME/adwaita-icon-theme/-/archive/51.0/adwaita-icon-theme-51.0.tar.gz",
-      root: "adwaita-icon-theme-51.0",
-      sha256: "adda5270c67ecdeb9604d24202fd8558b193379f9a9488179591cd4cdd99593b",
+      version: "40.1",
+      url: "https://gitlab.gnome.org/GNOME/adwaita-icon-theme/-/archive/40.1/adwaita-icon-theme-40.1.tar.gz",
+      root: "adwaita-icon-theme-40.1",
+      sha256: "6a13f97bf12eb24b00a72335c37324ac51556050115d7b3fdcdb83f081039d28",
     )
 
   let icons =
     log.step("Icons loading", fn() {
-      icons.load(source_path <> "/Adwaita/symbolic")
+      icons.load(source_path <> "/Adwaita/scalable")
     })
 
   let count = log.step("Code generation", fn() { generate.generate(icons) })

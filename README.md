@@ -5,4 +5,4 @@
 
 Adwaita symbolic icons as Lustre elements.
 
-Icons come from [adwaita-icon-theme](https://gitlab.gnome.org/GNOME/adwaita-icon-theme) 51.0 by the [GNOME Project](https://www.gnome.org), licensed under LGPL-3.0 or CC-BY-SA-3.0.
+Icons come from [adwaita-icon-theme](https://gitlab.gnome.org/GNOME/adwaita-icon-theme) 40.1 by the [GNOME Project](https://www.gnome.org), licensed under LGPL-3.0 or CC-BY-SA-3.0.
